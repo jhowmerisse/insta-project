@@ -1,11 +1,13 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 //cria servidor
 const app = express();
 
-//midleware
-app.get('/', (req, res) => {
-    return res.send(`Hello ${req.query.name}`);
+mongoose.connect('mongodb+srv://user:user@cluster0-ja2je.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
 });
+
+app.use(require('./routes'));
 
 app.listen(3333);
